@@ -13,7 +13,7 @@
 
 *   **Versão Atual:** `5.0.8`
 *   **Último Update:** 26/07/2026
-*   **Desenvolvedor:** [JaimeJG](https://github.com)
+*   **Desenvolvedor:** [JaimeJGJG](https://github.com)
 *   **Compatibilidade Básica:** Debian, Ubuntu e Linux Mint
 *   **Homologação:** Testado especificamente no **Linux Mint 22.3** (Apto a rodar em distros mais recentes baseadas em Ubuntu e Debian)
 
@@ -33,11 +33,11 @@ Siga rigorosamente a ordem dos comandos abaixo no terminal da sua distribuição
 
 ### 1. Preparação do Sistema
 
-Atualize os repositórios e instale o gerenciador de pacotes do Python junto com o suporte a ambientes virtuais:
+Atualize os repositórios e instale o gerenciador de pacotes do Python junto com o suporte a ambientes virtuais e ferramentas de extração:
 
 ```bash
 sudo apt update
-sudo apt install python3-pip python3-venv -y
+sudo apt install python3-pip python3-venv wget unzip -y
 ```
 
 ### 2. Instalação de Módulos e Dependências do Sistema
@@ -48,9 +48,29 @@ Instale as bibliotecas e ferramentas nativas necessárias para áudio, interface
 sudo apt install python3-pyaudio portaudio19-dev espeak python3-dbus python3-pyqt5 xdotool playerctl -y
 ```
 
+### 2.5. Baixando e Configurando o Modelo de Voz (VOSK)
+
+Para que o J.A.R.V.I.S reconheça seus comandos em português, o motor VOSK precisa da pasta do modelo nomeada como `PTBR` exatamente na raiz do projeto. 
+
+Abra o seu terminal **dentro da pasta principal do JARVIS** e execute a sequência abaixo:
+
+```bash
+# 1. Faz o download do modelo oficial do VOSK para Português
+wget https://alphacephei.com
+
+# 2. Extrai o arquivo compactado no diretório atual
+unzip vosk-model-small-pt-0.3.zip
+
+# 3. Renomeia a pasta extraída original para PTBR
+mv vosk-model-small-pt-0.3 PTBR
+
+# 4. Remove o arquivo zip que foi baixado para limpar o projeto
+rm vosk-model-small-pt-0.3.zip
+```
+
 ### 3. Configuração do Ambiente Virtual (VENV)
 
-Abra o seu terminal **dentro da pasta principal do JARVIS** e execute os passos abaixo:
+Ainda na pasta principal do projeto, execute os passos abaixo para isolar o ambiente do Python:
 
 ```bash
 # Criar o ambiente virtual
@@ -65,7 +85,7 @@ pip3 install -U pip
 
 ### 4. Instalação dos Módulos Python (via pip3)
 
-Com o ambiente virtual ativado (indicado por `(.venv)` no terminal), instale todas as bibliotecas necessárias:
+Com o ambiente virtual ativado (indicado por `(.venv)` no terminal), instale todas as bibliotecas do projeto:
 
 ```bash
 pip3 install SpeechRecognition jsonlib-python3 playsound3 xdotool pyaudio geocoder \
