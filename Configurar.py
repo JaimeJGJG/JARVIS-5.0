@@ -3,7 +3,7 @@
 #
 #  Configurar.py
 #  
-#  Copyright 2026 JaimeJG
+#  Copyright 2026 JaimeJGJG
 #  
 #  This program is free software; you can redistribute it and/or modify
 #  it under the terms of the GNU General Public License as published by
@@ -21,7 +21,7 @@
 #  MA 02110-1301, USA.
 #  
 #
-#  Código atualizado em 23/07/2026
+#
 #
 #
 
@@ -71,9 +71,38 @@ class JanelaConfigurar (QMainWindow):
 		self.label_aviso.setStyleSheet('QLabel {font-size:10px;color:gray;}')
 		self.label_aviso.resize(400,10)
 		
+		self.label_selrep = QLabel(self)
+		self.label_selrep.setText("Reprodutor de musicas:")
+		self.label_selrep.setAlignment(Qt.AlignLeft)
+		self.label_selrep.move(190,270)
+		self.label_selrep.setStyleSheet('QLabel {font-size:15px;color:gray;}')
+		self.label_selrep.resize(200,20)
+		
+		self.rep_sel = QComboBox(self)
+		self.rep_sel.move(190,295)
+		self.rep_sel.setStyleSheet('''
+		QComboBox{
+			border-style:solid;
+			border-width:1px;
+			border-color:blue;
+			color:white;
+			background-color:black;
+			selection-color:white}
+		QComboBox:item{
+			color:white;
+			selection-color:white;
+			selection-background-color:blue;
+			background-color:black}
+		''')
+		self.rep_sel.resize(200,30)
+		self.rep_sel.addItem("DEEZER")
+		self.rep_sel.addItem("SPOTIFY")
+		self.rep_sel.addItem("APPLE MUSIC")
+		self.rep_sel.currentIndexChanged.connect(self.repbox)
+		
 		self.label_selvoz = QLabel(self)
 		self.label_selvoz.setText("Estilo de voz:")
-		self.label_selvoz.setAlignment(Qt.AlignCenter)
+		self.label_selvoz.setAlignment(Qt.AlignLeft)
 		self.label_selvoz.move(10,270)
 		self.label_selvoz.setStyleSheet('QLabel {font-size:15px;color:gray;}')
 		self.label_selvoz.resize(95,20)
@@ -188,13 +217,30 @@ class JanelaConfigurar (QMainWindow):
 		with open('Dados//Voz.txt','w') as vozdef:
 			vozdef.write(vozdic)
 	
+	def repbox(self):
+		repmusic = self.rep_sel.currentText()
+		print(repmusic +' selecionada...')
+		setrepdic = {
+			'DEEZER': 'Deezer',
+			'SPOTIFY': 'Spotify',
+			'APPLE MUSIC': 'Apple Music'}
+		repdic = setrepdic[repmusic]
+		with open('Dados//RepMusic.txt','w') as repdef:
+			repdef.write(repdic)
+	
 	def padrao(self):
+		with open('Dados//Inicio.txt','w') as initdef:
+			initdef.write('0')
+			print('Zerado primeira inicialização')
 		with open('Dados//Voz.txt','w') as vozdef:
 			vozdef.write('pt-br+m3')
-			print('Voz definida para pt+m3')
+			print('Voz definida para "PT-BR+M3"')
 		with open('Dados//Nome.txt', 'w') as nomeusr:
 			nomeusr.write('USUÁRIO')
 			print('Nome padrão "USUÁRIO" definido')
+		with open('Dados//RepMusic.txt','w') as repdef:
+			repdef.write('Deezer')
+			print('Reprodutor online de música "DEEZER" atribuído')
 		
 	
 	def fechartudo(self):

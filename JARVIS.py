@@ -1,9 +1,9 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 #
 #  JANELA.py
 #  
-#  Copyright 2026 JaimeJG
+#  Copyright 2026 JaimeJGJG
 #  
 #  This program is free software; you can redistribute it and/or modify
 #  it under the terms of the GNU General Public License as published by
@@ -21,7 +21,7 @@
 #  MA 02110-1301, USA.
 #  
 #
-#  Código atualizado em 23/07/2026
+#
 #
 #
 
