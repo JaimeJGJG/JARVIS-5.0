@@ -1,6 +1,9 @@
 # Assistente Virtual J.A.R.V.I.S
 ### Just A Rather Very Intelligent System
 
+<img width="1131" height="517" alt="Captura de tela_JARVIS" src="https://github.com/user-attachments/assets/d98f788b-7d43-4954-9c44-5a4b5877be46" />
+
+
 ```text
         ______J.A.R.V.I.S______
 (Just A Rather Very Intelligent System)
